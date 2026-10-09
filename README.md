@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)]()
 
 > ### Notice
-> * **Pre-Compiled Binaries:** Ready-to-use binaries (`poor_dma_server.exe` and `poor_dma_client.exe`) are available on the release thread: [HackVsHack Release Thread](https://hackvshack.net/threads/poor-dma-alternative-for-dma-cards-by-abusing-window-defender-driver-to-read-physical-memory.14277/)
+> * **Pre-Compiled Binaries:** Ready-to-use binaries (`poor_dma_server.exe` and `poor_dma_client.exe`) are available on the release thread: [hackvshack.net Poor DMA Release Thread](https://hackvshack.net/threads/poor-dma-alternative-for-dma-cards-by-abusing-window-defender-driver-to-read-physical-memory.14277/)
 > * **Questions, Support & Usage:** For troubleshooting, setup help, questions, and usage discussions, visit the forum thread linked above.
 > * **GitHub Scope:** This GitHub repository is exclusively dedicated to source code. Contributions, bug fixes, performance improvements, and pull requests are welcome.
 
