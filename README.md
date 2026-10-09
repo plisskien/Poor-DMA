@@ -28,6 +28,8 @@
 
 **Poor DMA** is an open-source, software-based architecture designed for remote memory inspection across a local area network (LAN). Instead of requiring physical PCIe hardware cards with custom firmware, Poor DMA utilizes a Microsoft-signed diagnostic driver: **`KslD.sys`** (a native diagnostic component of Windows Defender).
 
+![Reading MZ header of PPL lsass.exe](assets/reading_mz_header_of_ppl_lsass.png)
+
 ### Key Architecture Features
 * **Arbitrary Physical Memory Access:** Utilizes the driver's underlying `MmCopyMemory` physical read primitive (`MM_COPY_MEMORY_PHYSICAL` via Sub-Command `0x0C`), allowing physical memory pages to be safely queried without triggering system bugchecks on unmapped regions.
 * **CPU Control Register Read via DPCs:** Queries Sub-Command `0x02` to extract processor control registers (`CR3`, `CR0`, `CR4`, `IDTR`, and `GDTR`) across active CPU cores.
@@ -82,6 +84,8 @@ Under official Microsoft Security Response Center (MSRC) guidelines, **Administr
 poor_dma/
 ├── Cargo.toml                  # Workspace configuration (LTO, strip, opt-level 3)
 ├── LICENSE                     # MIT License
+├── assets/                     # Visual assets & demonstrations
+│   └── reading_mz_header_of_ppl_lsass.png
 ├── lan_server/                 # Headless server (executes on Target system)
 │   ├── Cargo.toml
 │   ├── KslD.sys                # Signed Microsoft diagnostic driver
@@ -168,10 +172,12 @@ poor_dma_client.exe explorer.exe ntdll.dll
 # Force PFN FixCr3 recovery for protected processes
 poor_dma_client.exe fixcr3 explorer.exe
 
-# Read 64 bytes of virtual memory at address
+# Read 64 bytes of process virtual memory (shorthand or explicit)
+poor_dma_client.exe explorer.exe 0x7FF712345678 64
 poor_dma_client.exe read-process explorer.exe 0x7FF712345678 64
 
-# Read 8 bytes of kernel memory
+# Read 8 bytes of kernel virtual memory (shorthand or explicit)
+poor_dma_client.exe 0xFFFFF80012345678 8
 poor_dma_client.exe read-kernel 0xFFFFF80012345678 8
 ```
 
